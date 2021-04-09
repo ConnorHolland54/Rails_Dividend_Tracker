@@ -15,8 +15,8 @@
           <%= form_with url: '/port_stocks', method: :post do |form| %>
             <% @all_stocks.each do |s| %>
               <input type="checkbox" name="stock_ids[]" value=<%= s.id %>> <%= s.symbol %><br>
+              <input type="hidden" name="port_id" value=<%= @params %> >
             <% end %>
-            <input type="hidden" name="port_id" value=<%= @params %>>
             <%= form.submit "Add Stocks" %>
           <% end %>
         </div>
