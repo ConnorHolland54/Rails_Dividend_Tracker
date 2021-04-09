@@ -5,12 +5,18 @@
 <div class="container pt-3 pb-3">
     <div class="row">
         <div class="col-md-10 no-float">Navigation</div>
+          <ul>
+            <% @stocks.each do |s| %>
+              <li><%= s.symbol %></li>
+            <% end %>
+          </ul>
         <div class="col-md-2 no-float a">
           Select stocks you want to add to portfolio: <br>
           <%= form_with url: '/port_stocks', method: :post do |form| %>
             <% @all_stocks.each do |s| %>
               <input type="checkbox" name="stock_ids[]" value=<%= s.id %>> <%= s.symbol %><br>
             <% end %>
+            <input type="hidden" name="port_id" value=<%= @params %>>
             <%= form.submit "Add Stocks" %>
           <% end %>
         </div>

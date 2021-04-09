@@ -1,5 +1,5 @@
 class Stock < ApplicationRecord
-  has_many :portfolio_stocks
-  has_many :portfolios, through: :portfolio_stocks
+  has_many :port_stocks
+  has_many :portfolios, through: :port_stocks
   belongs_to :user
 end
