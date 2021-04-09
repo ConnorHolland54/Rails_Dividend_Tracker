@@ -1,0 +1,2 @@
+class PortStock < ApplicationRecord
+end

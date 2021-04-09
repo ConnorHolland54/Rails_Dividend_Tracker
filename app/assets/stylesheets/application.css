@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+ html,body,.container {
+     height:100%;
+ }
+ .container{
+     display:table;
+     width: 100%;
+     /* margin-top: -50px; */
+     padding: 50px 0 0 0; /*set left/right padding according to needs*/
+     box-sizing: border-box;
+ }
+
+ .row {
+     height: 100%;
+     display: table-row;
+     background-color: grey;
+ }
+
+ .row .no-float {
+   display: table-cell;
+   float: none;
+ }
+
+ .a {
+   background-color: teal;
+ }
