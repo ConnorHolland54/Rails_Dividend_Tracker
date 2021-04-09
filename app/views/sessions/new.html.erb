@@ -1,0 +1,5 @@
+<%= form_with url: '/login', method: :post do |form| %>
+  <%= render partial: 'form', locals: {form: form} %>
+  <%= form.submit "Log In" %><br>
+  <%= link_to "Create an Account", '/users/new' %>
+<% end %>
