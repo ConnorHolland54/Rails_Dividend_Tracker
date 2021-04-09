@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :portfolio_stocks
+  resources :portfolio_stocks, only: [:show]
   resources :stocks
-  resources :portfolios
+  resources :portfolios do
+    resources :stocks, only: [:index]
+  end
   resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'portfolios#index'

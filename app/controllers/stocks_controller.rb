@@ -2,7 +2,11 @@ class StocksController < ApplicationController
   include UsersHelper
 
   def index
-    @stocks = current_user.stocks
+    if params[:portfolio_id]
+      @stocks = current_user.portfolios.find(params[:portfolio_id]).stocks
+    else
+      @stocks = current_user.stocks
+    end
   end
 
   def create

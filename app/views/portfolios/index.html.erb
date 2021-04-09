@@ -1,7 +1,6 @@
-<h1>Hello!</h1>
-
+<h1>My Portfolios:</h1>
 <ul>
   <% @portfolios.each do |p| %>
-  <li><%= p.name %></li>
+  <li><%= link_to p.name, portfolio_stocks_path(p) %></li>
   <% end %>
 </ul>
