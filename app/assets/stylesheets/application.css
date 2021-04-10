@@ -27,7 +27,7 @@
  .row {
      height: 100%;
      display: table-row;
-     background-color: grey;
+     background-color: lightblue;
  }
 
  .row .no-float {
@@ -37,4 +37,8 @@
 
  .a {
    background-color: teal;
+ }
+
+ .border-custom {
+   border-color: black;
  }

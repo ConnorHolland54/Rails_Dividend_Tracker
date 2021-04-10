@@ -5,7 +5,8 @@ class StocksController < ApplicationController
     @params = params[:portfolio_id]
     if params[:portfolio_id]
       @all_stocks = current_user.stocks
-      @stocks = current_user.portfolios.find(params[:portfolio_id]).stocks
+      # @stocks = current_user.portfolios.find(params[:portfolio_id]).stocks
+      @stocks = current_user.portfolios.find(params[:portfolio_id]).port_stocks
     else
       @stocks = current_user.stocks
     end
@@ -22,7 +23,6 @@ class StocksController < ApplicationController
       flash[:notice] = "Error: Stock already exists or ticker is invalid"
       redirect_to '/stocks'
     end
-
   end
 
   private
