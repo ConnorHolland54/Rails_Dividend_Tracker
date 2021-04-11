@@ -1,6 +1,6 @@
 <%= form_with model: @user do |form| %>
   <%= render partial: 'sessions/form', locals: {form: form} %>
   <%=  form.label "Re-enter password:" %>
-  <%= form.text_field :repassword %>
+  <%= form.password_field :repassword %>
   <%= form.submit "Create Account" %>
 <% end %>

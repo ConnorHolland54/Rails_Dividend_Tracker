@@ -2,7 +2,7 @@ class PortStocksController < ApplicationController
   include UsersHelper
   def create
     if port_stock_params.first == nil
-      flash[:notice] = "Please select at least one option before adding."
+      flash[:notice] = "Portfolio must contain at least one stock"
       return redirect_to portfolio_stocks_path(port_stock_params[1])
     end
 

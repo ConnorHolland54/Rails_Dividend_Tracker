@@ -42,3 +42,54 @@
  .border-custom {
    border-color: black;
  }
+
+/* List of portfolios */
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px
+}
+
+.list {
+  background-color: lightblue;
+  height:  600px;
+  overflow-y: scroll;
+  border-radius: 30px;
+}
+
+/* testing */
+.area {
+  background-color: lightblue;
+  border-radius: 30px;
+  margin-top: 25px;
+}
+
+.list-2 {
+  background-color: lightblue;
+  height:  500px;
+  overflow-y: scroll;
+  width: auto;
+}
+/* End of testing */
+
+.option {
+  background-color: teal;
+  border-radius: 30px;
+}
+
+.link {
+  color: black;
+  text-align: center;
+}
+
+/* css for portfolio list buttons */
+.button-setup {
+  background-color: lightgrey;
+  width: 100%;
+  height: 45px;
+}
+
+button#astp {
+  margin-bottom: 5px;
+}

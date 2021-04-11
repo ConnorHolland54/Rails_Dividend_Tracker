@@ -1,6 +1,17 @@
-<h1>My Portfolios:</h1>
-<ul>
-  <% @portfolios.each do |p| %>
-  <li><%= link_to p.name, portfolio_stocks_path(p) %></li>
-  <% end %>
-</ul>
+
+<div class="center area">
+  <div class="center text">
+    <h1 class="link">My Portfolios</h1>
+  </div><br>
+  <div class="center list-2">
+    <% @portfolios.each do |p| %>
+    <!-- <div class="center option">
+      <h3 class="center"><%= link_to p.name, portfolio_stocks_path(p), class: "link" %></h3>
+    </div><br> -->
+    <div class="center">
+      <!-- <button type="button" name="button" class="center option button-setup">Portfolios</button> -->
+      <a href="/portfolios/<%= p.id %>/stocks"><button type="button" name="button" class="center option button-setup"><%= p.name %></button></a>
+    </div><br>
+    <% end %>
+  </div><br>
+</div>

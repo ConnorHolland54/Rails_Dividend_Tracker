@@ -9,11 +9,12 @@
 
 <% else %>
 <div class="container pt-2 pb-3">
+  <button type="button" id="astp" name="button" onclick="hideArea()">Add stocks to portfolio</button>
     <div class="row">
         <div class="col-md-10 no-float">
           <div class="table">
             <br>
-              <table class="table table-striped table-bordered border-custom">
+              <table class="table table-striped table-bordered border-custom table-dark">
               <thead>
               <tr>
                 <th scope="col">Symbol</th>
@@ -34,19 +35,7 @@
               </div>
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-        <div class="col-md-2 no-float a">
+        <div class="col-md-2 no-float a d-none" id="one">
           Select stocks you want to add to portfolio: <br>
           <%= form_with url: '/port_stocks', method: :post do |form| %>
             <% @all_stocks.each do |s| %>
@@ -81,3 +70,15 @@
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  function hideArea() {
+    let area = document.getElementById('one')
+    if (area.className == "col-md-2 no-float a d-none") {
+      area.className = "col-md-2 no-float a"
+    } else {
+      area.className = "col-md-2 no-float a d-none"
+    }
+  }
+</script>
