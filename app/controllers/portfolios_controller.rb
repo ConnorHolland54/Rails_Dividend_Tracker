@@ -17,6 +17,12 @@ class PortfoliosController < ApplicationController
     end
   end
 
+  def destroy
+    portfolio = current_user.portfolios.find(params[:id])
+    portfolio.destroy
+    redirect_to portfolios_path
+  end
+
   private
 
   def portfolio_params

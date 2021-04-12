@@ -1,5 +1,5 @@
 
-<% if @params == nil %>
+<% if @port_id == nil %>
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#stockModal">Add Stock</button>
 
 <h1>My Stocks:</h1>
@@ -9,12 +9,15 @@
 
 <% else %>
 <div class="container pt-2 pb-3">
-  <button type="button" id="astp" name="button" onclick="hideArea()">Add stocks to portfolio</button>
+
+  <%= form_with url: portfolio_path(@port_id), method: :delete do |form| %>
+    <%= form.submit "Delete Portfolio", class: "btn btn-danger delete-portfolio" %>
+  <% end %> <button type="button" id="astp" name="button" class="btn btn-primary" onclick="hideArea()">Add stocks to portfolio</button>
     <div class="row">
         <div class="col-md-10 no-float">
           <div class="table">
             <br>
-              <table class="table table-striped table-bordered border-custom table-dark">
+              <table class="table table-striped table-bordered border-custom table-light">
               <thead>
               <tr>
                 <th scope="col">Symbol</th>
@@ -39,8 +42,8 @@
           Select stocks you want to add to portfolio: <br>
           <%= form_with url: '/port_stocks', method: :post do |form| %>
             <% @all_stocks.each do |s| %>
-              <input type="checkbox" name="stock_ids[]" id="<%= s.id %>" value="<%= s.id %>" <%= 'checked' if stock_exist?(@params.to_i, s.id)%>> <%= s.symbol %><br>
-              <input type="hidden" name="port_id" value=<%= @params %> >
+              <input type="checkbox" name="stock_ids[]" id="<%= s.id %>" value="<%= s.id %>" <%= 'checked' if stock_exist?(@port_id.to_i, s.id)%>> <%= s.symbol %><br>
+              <input type="hidden" name="port_id" value=<%= @port_id %> >
             <% end %>
             <%= form.submit "Update Portfolio" %>
           <% end %>
