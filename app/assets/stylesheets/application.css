@@ -31,6 +31,8 @@
      box-sizing: border-box;
  }
 
+
+
  .row {
      height: 100%;
      display: table-row;
@@ -40,6 +42,9 @@
  .row .no-float {
    display: table-cell;
    float: none;
+ }
+ tr td, tr th {
+   text-align: center;
  }
 
  .a {

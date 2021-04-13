@@ -1,11 +1,14 @@
 
 <% if @port_id == nil %>
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#stockModal">Add Stock</button>
+<div class="" style="background-color: white;">
+  <h1>My Stocks:</h1>
+  <% binding.pry %>
+  <%= @stocks.each do |s| %>
+    <%= s.symbol %><br>
+  <% end %>
 
-<h1>My Stocks:</h1>
-<%= @stocks.each do |s| %>
-  <%= s.symbol %><br>
-<% end %>
+</div>
 
 <% else %>
 <div class="container pt-2 pb-3">
@@ -13,8 +16,16 @@
   <%= form_with url: portfolio_path(@port_id), method: :delete do |form| %>
     <%= form.submit "Delete Portfolio", class: "btn btn-danger delete-portfolio" %>
   <% end %>
-  <button type="button" id="astp" name="button" class="btn btn-primary astp" onclick="hideArea()">Add stocks to portfolio</button>
-  <button type="button" name="button" class="btn btn-primary astp" style="margin-left: 5px;" onclick="hideUpdateColumn()">Update Shares</button>
+  <button type="button" id="astp" name="button" class="btn btn-primary astp" onclick="hideArea()">Add/remove stocks to/from the portfolio</button>
+  <div class="btn-group">
+    <%= form_with url: '/port_stocks', method: :patch do |form| %>
+    <%= form.hidden_field :port_id, value: @port_id %>
+    <%= form.select :stock_id, options_from_collection_for_select(@stocks, "id", "symbol"), class: "btn btn-primary" %>
+    <%= form.number_field :shares %>
+    <%= form.submit "Update", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
 </div>
     <div class="row">
         <div class="col-md-10 no-float">
@@ -98,14 +109,4 @@
     }
   }
 
-  function hideUpdateColumn() {
-    let elements = document.getElementsByClassName('update-column')
-    for (let i = 0; i < elements.length; i++) {
-      if(elements[i].className == 'update-column') {
-        elements[i].classList.add('d-none')
-      } else {
-        elements[i].className = 'update-column'
-      }
-    }
-  }
 </script>

@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
+
+  patch '/port_stocks', to: 'port_stocks#update_stock'
 end
