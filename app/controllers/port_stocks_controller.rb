@@ -20,6 +20,12 @@ class PortStocksController < ApplicationController
     redirect_to portfolio_stocks_path(port_stock_params[1].to_i)
   end
 
+  def update
+    @port_stock = PortStock.find(params[:id])
+    @port_stock.update(shares: params[:shares])
+    redirect_to portfolio_stocks_path(params[:port_id].to_i)
+  end
+
   private
   def port_stock_params
     params.values_at(:stock_ids, :port_id)

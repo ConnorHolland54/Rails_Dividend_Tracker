@@ -1,5 +1,6 @@
 class StocksController < ApplicationController
   include UsersHelper
+  helper_method :find_port_stock_id
 
   def index
     @port_id = params[:portfolio_id]
@@ -23,6 +24,11 @@ class StocksController < ApplicationController
       flash[:notice] = "Error: Stock already exists or ticker is invalid"
       redirect_to '/stocks'
     end
+  end
+
+  def find_port_stock_id(stock_id, port_id)
+    port_stock = current_user.portfolios.find(port_id).port_stocks.find(stock_id)
+    port_stock.id
   end
 
   private

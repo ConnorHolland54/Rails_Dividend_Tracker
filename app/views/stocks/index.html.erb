@@ -9,10 +9,13 @@
 
 <% else %>
 <div class="container pt-2 pb-3">
-
+<div class="">
   <%= form_with url: portfolio_path(@port_id), method: :delete do |form| %>
     <%= form.submit "Delete Portfolio", class: "btn btn-danger delete-portfolio" %>
-  <% end %> <button type="button" id="astp" name="button" class="btn btn-primary" onclick="hideArea()">Add stocks to portfolio</button>
+  <% end %>
+  <button type="button" id="astp" name="button" class="btn btn-primary astp" onclick="hideArea()">Add stocks to portfolio</button>
+  <button type="button" name="button" class="btn btn-primary astp" style="margin-left: 5px;" onclick="hideUpdateColumn()">Update Shares</button>
+</div>
     <div class="row">
         <div class="col-md-10 no-float">
           <div class="table">
@@ -30,7 +33,16 @@
                 <tr>
                   <td><%= stock.symbol %></td>
                   <td><%= stock.name %></td>
-                  <td><%= stock.shares %></td>
+                  <td id="x"><%= stock.shares %></td>
+                  <td class="update-column d-none">
+
+                    <%= form_with url: "/port_stocks/#{find_port_stock_id(stock.id, @port_id)}", method: :patch do |form| %>
+                    <%= form.hidden_field "port_id", value: @port_id %>
+                    <%= form.label "Amount:" %>
+                    <%= form.number_field :shares %>
+                    <%= form.submit "Update" %>
+                    <% end %>
+                  </td>
                 </tr>
               <% end %>
               </tbody>
@@ -39,6 +51,7 @@
         </div>
 
         <div class="col-md-2 no-float a d-none" id="one">
+          If you do not currently have any stocks to add, please click MyStocks at the top to add some! <br>
           Select stocks you want to add to portfolio: <br>
           <%= form_with url: '/port_stocks', method: :post do |form| %>
             <% @all_stocks.each do |s| %>
@@ -82,6 +95,17 @@
       area.className = "col-md-2 no-float a"
     } else {
       area.className = "col-md-2 no-float a d-none"
+    }
+  }
+
+  function hideUpdateColumn() {
+    let elements = document.getElementsByClassName('update-column')
+    for (let i = 0; i < elements.length; i++) {
+      if(elements[i].className == 'update-column') {
+        elements[i].classList.add('d-none')
+      } else {
+        elements[i].className = 'update-column'
+      }
     }
   }
 </script>
